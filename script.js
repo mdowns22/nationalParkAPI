@@ -9,10 +9,11 @@ function formatQueryParams(params) {
   return queryItems.join('&');
 }
 
-function getParks(query, maxResults=10) {
+function getParks(states, maxResults=10) {
   const params = {
     api_key:api_key,
-    q:query,
+    stateCode: [states],
+    //q:query,
     limit:maxResults,
     fields:['addresses']
   };
@@ -30,6 +31,7 @@ function getParks(query, maxResults=10) {
     console.log(responseJson);
     for(let i = 0; i < responseJson.data.length; i++) {
       $('.results-list').append(`<h4>${responseJson.data[i].fullName}</h4>`);
+      $('.results-list').append(`<p>States: ${responseJson.data[i].states}</p>`);
       $('.results-list').append(`<p>${responseJson.data[i].description}</p>`);
       $('.results-list').append(`<p><a href="${responseJson.data[i].url}">${responseJson.data[i].url}</p>`);
       $('.results-list').append(`<p>${responseJson.data[i].addresses[0].line1}</p>`);
