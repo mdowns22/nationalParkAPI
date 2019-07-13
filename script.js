@@ -12,7 +12,7 @@ function formatQueryParams(params) {
 function getParks(states, maxResults=10) {
   const params = {
     api_key:api_key,
-    stateCode: [states],
+    stateCode:[states],
     //q:query,
     limit:maxResults,
     fields:['addresses']
@@ -47,7 +47,7 @@ function getParks(states, maxResults=10) {
     $('#js-form').submit(event => {
       $('.results-list').empty();
       event.preventDefault();
-      const searchTerm = $('#search-for-parks').val();
+      const searchTerm = $('#search-for-parks').val().toUpperCase();
       const maxResults = $('#maximum-number').val();
       getParks(searchTerm, maxResults);
     });
